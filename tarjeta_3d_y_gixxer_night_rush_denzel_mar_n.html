@@ -1,0 +1,1876 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Denzel Elian Marín Castellanos | Tarjeta 3D &amp; Gixxer Night Rush</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Orbitron:wght@600;700;800;900&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-base: #090b10;
+      --surface-card: #0e121b;
+      --surface-elevated: #141a27;
+      --cyan-neon: #00e5ff;
+      --suzuki-blue: #2563eb;
+      --orange-neon: #ff6b00;
+      --text-primary: #f1f5f9;
+      --text-secondary: #94a3b8;
+      --border-glow: rgba(0, 229, 255, 0.28);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html,
+    body {
+      min-height: 100dvh;
+      width: 100%;
+      background-color: var(--bg-base);
+      color: var(--text-primary);
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      overflow-x: hidden;
+    }
+
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      position: relative;
+      background-image:
+        radial-gradient(circle at 15% 15%, rgba(37, 99, 235, 0.16), transparent 42%),
+        radial-gradient(circle at 85% 85%, rgba(255, 107, 0, 0.12), transparent 45%),
+        radial-gradient(circle at 50% 50%, rgba(0, 229, 255, 0.06), transparent 60%),
+        linear-gradient(27deg, #0b0e15 5px, transparent 5px),
+        linear-gradient(207deg, #0b0e15 5px, transparent 5px),
+        linear-gradient(27deg, #101520 5px, transparent 5px),
+        linear-gradient(207deg, #101520 5px, transparent 5px),
+        linear-gradient(90deg, #090c12 10px, transparent 10px),
+        linear-gradient(#090c12 25%, #07090e 25%, #07090e 50%, transparent 50%, transparent 75%, #0b0e15 75%, #0b0e15);
+      background-size:
+        100% 100%,
+        100% 100%,
+        100% 100%,
+        20px 20px,
+        20px 20px,
+        20px 20px,
+        20px 20px,
+        20px 20px,
+        20px 20px;
+      background-position:
+        0 0,
+        0 0,
+        0 0,
+        0 5px,
+        10px 0,
+        0 10px,
+        10px 5px,
+        0 0,
+        0 0;
+    }
+
+    .scene {
+      width: 100%;
+      max-width: 520px;
+      perspective: 1200px;
+      -webkit-perspective: 1200px;
+      z-index: 1;
+    }
+
+    .card-3d {
+      width: 100%;
+      display: grid;
+      transform-style: preserve-3d;
+      -webkit-transform-style: preserve-3d;
+      transition: transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: transform;
+    }
+
+    .card-3d.is-flipped {
+      transform: rotateY(180deg);
+    }
+
+    .card-face {
+      grid-area: 1 / 1;
+      width: 100%;
+      border-radius: 24px;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      background:
+        linear-gradient(155deg, rgba(20, 27, 42, 0.94) 0%, rgba(11, 14, 22, 0.98) 100%),
+        repeating-linear-gradient(
+          45deg,
+          rgba(255, 255, 255, 0.015) 0px,
+          rgba(255, 255, 255, 0.015) 2px,
+          transparent 2px,
+          transparent 6px
+        );
+      border: 1px solid var(--border-glow);
+      box-shadow:
+        0 25px 60px -15px rgba(0, 0, 0, 0.85),
+        0 0 28px rgba(37, 99, 235, 0.18),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-face::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--suzuki-blue), var(--cyan-neon), var(--orange-neon));
+      z-index: 2;
+    }
+
+    .card-front {
+      padding: 26px 24px 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 18px;
+      z-index: 2;
+      pointer-events: auto;
+    }
+
+    .card-3d.is-flipped .card-front {
+      pointer-events: none;
+    }
+
+    .card-back {
+      transform: rotateY(180deg);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 12px;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .card-3d.is-flipped .card-back {
+      pointer-events: auto;
+      z-index: 3;
+    }
+
+    .front-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .identity-top {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .avatar-monogram {
+      width: 58px;
+      height: 58px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--suzuki-blue), var(--cyan-neon));
+      padding: 2px;
+      box-shadow: 0 0 20px rgba(0, 229, 255, 0.28);
+      flex-shrink: 0;
+    }
+
+    .avatar-inner {
+      width: 100%;
+      height: 100%;
+      border-radius: 14px;
+      background: radial-gradient(circle at 30% 25%, #18233a, #0a0e17);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .avatar-inner::after {
+      content: '';
+      position: absolute;
+      width: 140%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--orange-neon), transparent);
+      bottom: 10px;
+      transform: rotate(-12deg);
+      opacity: 0.85;
+    }
+
+    .avatar-text {
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 900;
+      font-size: 1.25rem;
+      letter-spacing: 1px;
+      background: linear-gradient(135deg, #ffffff 30%, var(--cyan-neon) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 6px 11px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(0, 229, 255, 0.22);
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: #cbd5e1;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 10px #10b981;
+      animation: pulseDot 2s infinite;
+      flex-shrink: 0;
+    }
+
+    @keyframes pulseDot {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.3); opacity: 0.7; }
+    }
+
+    .btn-copy {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 12px;
+      border-radius: 12px;
+      background: rgba(30, 41, 59, 0.65);
+      border: 1px solid rgba(148, 163, 184, 0.22);
+      color: #cbd5e1;
+      font-family: inherit;
+      font-size: 0.78rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-copy:hover {
+      border-color: var(--cyan-neon);
+      color: #ffffff;
+      background: rgba(0, 229, 255, 0.12);
+      box-shadow: 0 0 14px rgba(0, 229, 255, 0.2);
+    }
+
+    .btn-copy:active {
+      transform: scale(0.96);
+    }
+
+    .profile-heading {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .profile-name {
+      font-size: clamp(1.38rem, 4.5vw, 1.72rem);
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+    }
+
+    .profile-role {
+      font-size: 0.96rem;
+      font-weight: 600;
+      color: var(--cyan-neon);
+      line-height: 1.35;
+    }
+
+    .profile-institution {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 0.84rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+      margin-top: 2px;
+    }
+
+    .profile-institution svg {
+      color: var(--orange-neon);
+      flex-shrink: 0;
+    }
+
+    .bio-box {
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: rgba(9, 13, 22, 0.75);
+      border: 1px solid rgba(37, 99, 235, 0.24);
+      border-left: 3px solid var(--suzuki-blue);
+      font-size: 0.89rem;
+      line-height: 1.58;
+      color: #cbd5e1;
+    }
+
+    .bio-highlight {
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    .skills-section {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .skills-label {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.4px;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .skills-label::after {
+      content: '';
+      height: 1px;
+      flex: 1;
+      background: linear-gradient(90deg, rgba(0, 229, 255, 0.25), transparent);
+    }
+
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .skill-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 11px;
+      border-radius: 10px;
+      background: rgba(20, 27, 45, 0.9);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      font-size: 0.79rem;
+      font-weight: 600;
+      color: #e2e8f0;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .skill-badge:hover {
+      transform: translateY(-2px);
+      border-color: var(--cyan-neon);
+      box-shadow: 0 4px 14px rgba(0, 229, 255, 0.16);
+    }
+
+    .skill-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--cyan-neon);
+    }
+
+    .skill-badge:nth-child(3n+2) .skill-dot {
+      background: var(--suzuki-blue);
+    }
+
+    .skill-badge:nth-child(3n) .skill-dot {
+      background: var(--orange-neon);
+    }
+
+    .btn-flip-play {
+      width: 100%;
+      padding: 15px 20px;
+      border: none;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--suzuki-blue) 0%, #0284c7 55%, #00b4d8 100%);
+      color: #ffffff;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.98rem;
+      font-weight: 800;
+      letter-spacing: 0.8px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      position: relative;
+      overflow: hidden;
+      box-shadow:
+        0 8px 25px rgba(37, 99, 235, 0.45),
+        0 0 20px rgba(0, 229, 255, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.35);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .btn-flip-play::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 65%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+      transform: skewX(-25deg);
+      transition: left 0.65s ease;
+    }
+
+    .btn-flip-play:hover {
+      transform: translateY(-2px);
+      box-shadow:
+        0 12px 30px rgba(37, 99, 235, 0.6),
+        0 0 28px rgba(0, 229, 255, 0.55);
+    }
+
+    .btn-flip-play:hover::before {
+      left: 140%;
+    }
+
+    .btn-flip-play:active {
+      transform: scale(0.98);
+    }
+
+    .game-header {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .game-title-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .game-brand {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .game-badge-stripe {
+      width: 4px;
+      height: 18px;
+      border-radius: 4px;
+      background: linear-gradient(180deg, var(--orange-neon), var(--cyan-neon));
+    }
+
+    .game-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(0.86rem, 3.2vw, 1.02rem);
+      font-weight: 900;
+      letter-spacing: 0.9px;
+      background: linear-gradient(90deg, #ffffff 10%, var(--cyan-neon) 65%, var(--orange-neon) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .game-actions {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-hud {
+      height: 32px;
+      padding: 0 10px;
+      border-radius: 10px;
+      background: rgba(20, 28, 45, 0.9);
+      border: 1px solid rgba(0, 229, 255, 0.25);
+      color: #e2e8f0;
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      transition: all 0.18s ease;
+    }
+
+    .btn-hud:hover {
+      border-color: var(--cyan-neon);
+      background: rgba(0, 229, 255, 0.14);
+      color: #ffffff;
+    }
+
+    .btn-hud.btn-back-card {
+      border-color: rgba(255, 107, 0, 0.4);
+      color: #ffedd5;
+    }
+
+    .btn-hud.btn-back-card:hover {
+      border-color: var(--orange-neon);
+      background: rgba(255, 107, 0, 0.18);
+    }
+
+    .hud-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .stat-card {
+      background: rgba(9, 13, 22, 0.85);
+      border: 1px solid rgba(37, 99, 235, 0.28);
+      border-radius: 12px;
+      padding: 6px 8px;
+      text-align: center;
+    }
+
+    .stat-label {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+    }
+
+    .stat-value {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.94rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-top: 1px;
+    }
+
+    .stat-value.cyan {
+      color: var(--cyan-neon);
+    }
+
+    .stat-value.orange {
+      color: var(--orange-neon);
+    }
+
+    .canvas-wrapper {
+      position: relative;
+      width: 100%;
+      height: 310px;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(0, 229, 255, 0.3);
+      background: #06080d;
+      box-shadow: inset 0 0 24px rgba(0, 0, 0, 0.9);
+      touch-action: none;
+      user-select: none;
+    }
+
+    #gameCanvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .game-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(7, 10, 17, 0.84);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      text-align: center;
+      gap: 12px;
+      z-index: 5;
+      transition: opacity 0.25s ease;
+    }
+
+    .game-overlay.hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .overlay-tag {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+      color: var(--orange-neon);
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: rgba(255, 107, 0, 0.14);
+      border: 1px solid rgba(255, 107, 0, 0.35);
+    }
+
+    .overlay-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.28rem;
+      font-weight: 900;
+      letter-spacing: 0.8px;
+      color: #ffffff;
+      text-shadow: 0 0 18px rgba(0, 229, 255, 0.45);
+    }
+
+    .overlay-desc {
+      font-size: 0.82rem;
+      line-height: 1.45;
+      color: #cbd5e1;
+      max-width: 310px;
+    }
+
+    .record-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(255, 107, 0, 0.25), rgba(0, 229, 255, 0.25));
+      border: 1px solid var(--orange-neon);
+      color: #ffffff;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.8px;
+      animation: pulseDot 1.4s infinite;
+    }
+
+    .record-badge.hidden {
+      display: none;
+    }
+
+    .gameover-metrics {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      width: 100%;
+      max-width: 270px;
+    }
+
+    .metric-pill {
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(0, 229, 255, 0.25);
+      border-radius: 12px;
+      padding: 8px;
+    }
+
+    .metric-pill span {
+      display: block;
+      font-size: 0.7rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      font-weight: 600;
+    }
+
+    .metric-pill strong {
+      display: block;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.05rem;
+      color: var(--cyan-neon);
+      margin-top: 2px;
+    }
+
+    .btn-game-action {
+      padding: 12px 26px;
+      border: none;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--orange-neon), #ff8800);
+      color: #ffffff;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 800;
+      letter-spacing: 0.8px;
+      cursor: pointer;
+      box-shadow:
+        0 6px 20px rgba(255, 107, 0, 0.45),
+        inset 0 1px 0 rgba(255, 255, 255, 0.35);
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .btn-game-action:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 25px rgba(255, 107, 0, 0.65);
+    }
+
+    .btn-game-action:active {
+      transform: scale(0.96);
+    }
+
+    .touch-controls {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .btn-steer {
+      height: 50px;
+      border-radius: 14px;
+      background: linear-gradient(180deg, rgba(24, 34, 56, 0.95), rgba(13, 19, 32, 0.98));
+      border: 1px solid rgba(0, 229, 255, 0.3);
+      color: #ffffff;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.84rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.45);
+      touch-action: manipulation;
+      user-select: none;
+      transition: transform 0.1s ease, border-color 0.15s ease, background 0.15s ease;
+    }
+
+    .btn-steer:active,
+    .btn-steer.is-pressed {
+      transform: scale(0.96);
+      border-color: var(--cyan-neon);
+      background: linear-gradient(180deg, rgba(37, 99, 235, 0.45), rgba(0, 229, 255, 0.25));
+      box-shadow: 0 0 18px rgba(0, 229, 255, 0.35);
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 22px;
+      left: 50%;
+      transform: translateX(-50%) translateY(90px);
+      background: rgba(13, 19, 33, 0.96);
+      border: 1px solid var(--cyan-neon);
+      color: #ffffff;
+      padding: 10px 18px;
+      border-radius: 999px;
+      font-size: 0.84rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7), 0 0 20px rgba(0, 229, 255, 0.28);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease;
+      z-index: 50;
+    }
+
+    .toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    @media (max-width: 420px) {
+      body {
+        padding: 12px;
+      }
+
+      .card-front {
+        padding: 20px 18px 18px;
+        gap: 15px;
+      }
+
+      .card-back {
+        padding: 14px;
+        gap: 10px;
+      }
+
+      .avatar-monogram {
+        width: 50px;
+        height: 50px;
+      }
+
+      .canvas-wrapper {
+        height: 285px;
+      }
+
+      .btn-steer {
+        height: 46px;
+        font-size: 0.78rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="scene">
+    <div class="card-3d" id="card3d">
+      <section class="card-face card-front" aria-label="Tarjeta de presentación de Denzel Elian Marín Castellanos">
+        <header class="front-header">
+          <div class="identity-top">
+            <div class="avatar-monogram" aria-hidden="true">
+              <div class="avatar-inner">
+                <span class="avatar-text">DM</span>
+              </div>
+            </div>
+            <div class="status-pill">
+              <span class="status-dot"></span>
+              <span>Bogotá, Colombia • Disponible</span>
+            </div>
+          </div>
+
+          <button type="button" class="btn-copy" id="btnCopyProfile" title="Copiar resumen del perfil">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+            <span>Copiar perfil</span>
+          </button>
+        </header>
+
+        <div class="profile-heading">
+          <h1 class="profile-name">Denzel Elian Marín Castellanos</h1>
+          <p class="profile-role">Estudiante de Ingeniería de Sistemas y Desarrollo de Software</p>
+          <p class="profile-institution">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 10v6M2 10l10-5 10 5-10 5z"></path>
+              <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
+            </svg>
+            <span>Politécnico Internacional • Bogotá</span>
+          </p>
+        </div>
+
+        <div class="bio-box">
+          Enfocado en desarrollo de software, bases de datos relacionales, administración de sistemas Linux y ciberseguridad. Apasionado por la velocidad en dos ruedas (<span class="bio-highlight">Suzuki Gixxer 250</span>) y los retos lógicos.
+        </div>
+
+        <div class="skills-section">
+          <span class="skills-label">Stack &amp; Competencias Técnicas</span>
+          <div class="skills-grid">
+            <span class="skill-badge"><span class="skill-dot"></span>Java</span>
+            <span class="skill-badge"><span class="skill-dot"></span>SQL Server / MySQL</span>
+            <span class="skill-badge"><span class="skill-dot"></span>Python</span>
+            <span class="skill-badge"><span class="skill-dot"></span>HTML / CSS / JS</span>
+            <span class="skill-badge"><span class="skill-dot"></span>Linux (Ubuntu)</span>
+            <span class="skill-badge"><span class="skill-dot"></span>Ciberseguridad &amp; Redes</span>
+            <span class="skill-badge"><span class="skill-dot"></span>Inglés B1</span>
+          </div>
+        </div>
+
+        <button type="button" class="btn-flip-play" id="btnFlipToGame">
+          <span>Girar y Jugar 🎮</span>
+        </button>
+      </section>
+
+      <section class="card-face card-back" aria-label="Minijuego Gixxer Night Rush">
+        <header class="game-header">
+          <div class="game-title-row">
+            <div class="game-brand">
+              <span class="game-badge-stripe"></span>
+              <h2 class="game-title">GIXXER NIGHT RUSH</h2>
+            </div>
+
+            <div class="game-actions">
+              <button type="button" class="btn-hud" id="btnToggleMute" aria-label="Silenciar o activar sonido" title="Sonido">
+                <svg id="iconSoundOn" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                  <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+                  <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+                </svg>
+                <svg id="iconSoundOff" style="display:none;" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+                  <line x1="23" y1="9" x2="17" y2="15"></line>
+                  <line x1="17" y1="9" x2="23" y2="15"></line>
+                </svg>
+              </button>
+
+              <button type="button" class="btn-hud btn-back-card" id="btnFlipToCard">
+                <span>Volver ↻</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="hud-stats">
+            <div class="stat-card">
+              <div class="stat-label">Puntaje</div>
+              <div class="stat-value cyan" id="hudScore">0</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Récord</div>
+              <div class="stat-value" id="hudBest">0</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Velocidad</div>
+              <div class="stat-value orange" id="hudSpeed">85 KM/H</div>
+            </div>
+          </div>
+        </header>
+
+        <div class="canvas-wrapper" id="canvasWrapper">
+          <canvas id="gameCanvas"></canvas>
+
+          <div class="game-overlay" id="overlayStart">
+            <span class="overlay-tag">Modo Nocturno • 4 Carriles</span>
+            <h3 class="overlay-title">GIXXER NIGHT RUSH</h3>
+            <p class="overlay-desc">Esquiva autos y conos viales a toda velocidad. Recoge paquetes <strong>Nitro/Data</strong> cian para sumar +50 pts y activar estela turbo.</p>
+            <button type="button" class="btn-game-action" id="btnStartGame">¡ARRANCAR!</button>
+          </div>
+
+          <div class="game-overlay hidden" id="overlayPause">
+            <span class="overlay-tag">Sistema en Espera</span>
+            <h3 class="overlay-title">JUEGO EN PAUSA</h3>
+            <p class="overlay-desc">Tu Suzuki Gixxer 250 está lista para volver a la autopista nocturna.</p>
+            <button type="button" class="btn-game-action" id="btnResumeGame">CONTINUAR</button>
+          </div>
+
+          <div class="game-overlay hidden" id="overlayGameOver">
+            <span class="overlay-tag">Colisión Detectada</span>
+            <h3 class="overlay-title">FIN DE LA CARRERA</h3>
+            <div class="record-badge hidden" id="newRecordBadge">★ ¡NUEVO RÉCORD! ★</div>
+            <div class="gameover-metrics">
+              <div class="metric-pill">
+                <span>Puntaje Final</span>
+                <strong id="finalScore">0</strong>
+              </div>
+              <div class="metric-pill">
+                <span>Vel. Máxima</span>
+                <strong id="finalMaxSpeed">85 KM/H</strong>
+              </div>
+            </div>
+            <button type="button" class="btn-game-action" id="btnRestartGame">Jugar de Nuevo</button>
+          </div>
+        </div>
+
+        <div class="touch-controls">
+          <button type="button" class="btn-steer" id="btnLeft" aria-label="Mover a la izquierda">
+            <span>◀ IZQUIERDA</span>
+          </button>
+          <button type="button" class="btn-steer" id="btnRight" aria-label="Mover a la derecha">
+            <span>DERECHA ▶</span>
+          </button>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div class="toast" id="toastNotification" role="status" aria-live="polite">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#00e5ff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="20 6 9 17 4 12"></polyline>
+    </svg>
+    <span>¡Resumen del perfil copiado al portapapeles!</span>
+  </div>
+
+  <script>
+    (function () {
+      const card3d = document.getElementById('card3d');
+      const btnFlipToGame = document.getElementById('btnFlipToGame');
+      const btnFlipToCard = document.getElementById('btnFlipToCard');
+      const btnCopyProfile = document.getElementById('btnCopyProfile');
+      const toastNotification = document.getElementById('toastNotification');
+
+      const btnToggleMute = document.getElementById('btnToggleMute');
+      const iconSoundOn = document.getElementById('iconSoundOn');
+      const iconSoundOff = document.getElementById('iconSoundOff');
+
+      const hudScore = document.getElementById('hudScore');
+      const hudBest = document.getElementById('hudBest');
+      const hudSpeed = document.getElementById('hudSpeed');
+
+      const canvasWrapper = document.getElementById('canvasWrapper');
+      const canvas = document.getElementById('gameCanvas');
+      const ctx = canvas.getContext('2d');
+
+      const overlayStart = document.getElementById('overlayStart');
+      const overlayPause = document.getElementById('overlayPause');
+      const overlayGameOver = document.getElementById('overlayGameOver');
+      const newRecordBadge = document.getElementById('newRecordBadge');
+      const finalScoreEl = document.getElementById('finalScore');
+      const finalMaxSpeedEl = document.getElementById('finalMaxSpeed');
+
+      const btnStartGame = document.getElementById('btnStartGame');
+      const btnResumeGame = document.getElementById('btnResumeGame');
+      const btnRestartGame = document.getElementById('btnRestartGame');
+      const btnLeft = document.getElementById('btnLeft');
+      const btnRight = document.getElementById('btnRight');
+
+      const STORAGE_KEY = 'gixxer_night_rush_high_score';
+      let highScore = 0;
+      try {
+        highScore = parseInt(localStorage.getItem(STORAGE_KEY) || '0', 10) || 0;
+      } catch (e) {
+        highScore = 0;
+      }
+      hudBest.textContent = highScore;
+
+      let toastTimer = null;
+      function showToast() {
+        toastNotification.classList.add('show');
+        clearTimeout(toastTimer);
+        toastTimer = setTimeout(function () {
+          toastNotification.classList.remove('show');
+        }, 2600);
+      }
+
+      btnCopyProfile.addEventListener('click', function () {
+        const profileSummary =
+          'Denzel Elian Marín Castellanos | Estudiante de Ingeniería de Sistemas y Desarrollo de Software (Politécnico Internacional • Bogotá). Habilidades: Java, SQL Server/MySQL, Python, HTML/CSS/JS, Linux (Ubuntu), Ciberseguridad & Redes, Inglés B1.';
+        const tempInput = document.createElement('textarea');
+        tempInput.value = profileSummary;
+        tempInput.style.position = 'fixed';
+        tempInput.style.opacity = '0';
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        try {
+          document.execCommand('copy');
+          showToast();
+        } catch (err) {
+          showToast();
+        }
+        document.body.removeChild(tempInput);
+      });
+
+      const SoundEngine = {
+        ctx: null,
+        muted: false,
+        engineOsc: null,
+        engineGain: null,
+
+        init: function () {
+          if (!this.ctx) {
+            const AudioCtx = window.AudioContext || window.webkitAudioContext;
+            if (AudioCtx) {
+              this.ctx = new AudioCtx();
+            }
+          }
+          if (this.ctx && this.ctx.state === 'suspended') {
+            this.ctx.resume().catch(function () {});
+          }
+        },
+
+        toggleMute: function () {
+          this.muted = !this.muted;
+          iconSoundOn.style.display = this.muted ? 'none' : 'block';
+          iconSoundOff.style.display = this.muted ? 'block' : 'none';
+          if (this.muted) {
+            this.stopEngine();
+          } else if (game.state === 'playing') {
+            this.startEngine();
+          }
+        },
+
+        startEngine: function () {
+          if (this.muted) return;
+          this.init();
+          if (!this.ctx || this.engineOsc) return;
+          try {
+            const osc = this.ctx.createOscillator();
+            const filter = this.ctx.createBiquadFilter();
+            const gain = this.ctx.createGain();
+            osc.type = 'sawtooth';
+            osc.frequency.value = 58;
+            filter.type = 'lowpass';
+            filter.frequency.value = 190;
+            gain.gain.value = 0.032;
+            osc.connect(filter);
+            filter.connect(gain);
+            gain.connect(this.ctx.destination);
+            osc.start();
+            this.engineOsc = osc;
+            this.engineGain = gain;
+          } catch (e) {}
+        },
+
+        updateEnginePitch: function (speedRatio, isTurbo) {
+          if (!this.engineOsc || !this.ctx || this.muted) return;
+          try {
+            const targetFreq = 56 + speedRatio * 68 + (isTurbo ? 26 : 0);
+            this.engineOsc.frequency.setTargetAtTime(targetFreq, this.ctx.currentTime, 0.08);
+          } catch (e) {}
+        },
+
+        stopEngine: function () {
+          if (this.engineOsc) {
+            try {
+              this.engineOsc.stop();
+              this.engineOsc.disconnect();
+            } catch (e) {}
+            this.engineOsc = null;
+            this.engineGain = null;
+          }
+        },
+
+        playTone: function (freqStart, freqEnd, duration, type, volume) {
+          if (this.muted) return;
+          this.init();
+          if (!this.ctx) return;
+          try {
+            const now = this.ctx.currentTime;
+            const osc = this.ctx.createOscillator();
+            const gain = this.ctx.createGain();
+            osc.type = type || 'sine';
+            osc.frequency.setValueAtTime(freqStart, now);
+            osc.frequency.exponentialRampToValueAtTime(Math.max(20, freqEnd), now + duration);
+            gain.gain.setValueAtTime(volume || 0.1, now);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + duration);
+            osc.connect(gain);
+            gain.connect(this.ctx.destination);
+            osc.start(now);
+            osc.stop(now + duration);
+          } catch (e) {}
+        },
+
+        playShift: function () {
+          this.playTone(240, 420, 0.09, 'triangle', 0.07);
+        },
+
+        playNitro: function () {
+          this.playTone(520, 1040, 0.16, 'sine', 0.12);
+          setTimeout(() => {
+            this.playTone(780, 1360, 0.18, 'triangle', 0.1);
+          }, 70);
+        },
+
+        playCrash: function () {
+          this.stopEngine();
+          this.playTone(150, 34, 0.42, 'sawtooth', 0.18);
+          this.playTone(95, 28, 0.48, 'square', 0.14);
+        }
+      };
+
+      btnToggleMute.addEventListener('click', function () {
+        SoundEngine.toggleMute();
+      });
+
+      const LANES = 4;
+      const game = {
+        state: 'start',
+        width: 360,
+        height: 310,
+        roadLeft: 24,
+        roadWidth: 312,
+        laneWidth: 78,
+        laneIndex: 1,
+        playerX: 0,
+        playerY: 0,
+        tilt: 0,
+        score: 0,
+        distanceScore: 0,
+        baseSpeed: 290,
+        currentSpeed: 290,
+        displayKmh: 85,
+        maxKmh: 85,
+        turboTimer: 0,
+        roadOffset: 0,
+        spawnTimer: 0,
+        obstacles: [],
+        collectibles: [],
+        particles: [],
+        floatingTexts: [],
+        trail: [],
+        shakeTime: 0,
+        lastFrameTime: 0
+      };
+
+      function resizeCanvas() {
+        const rect = canvasWrapper.getBoundingClientRect();
+        if (rect.width <= 0 || rect.height <= 0) return;
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        canvas.width = Math.round(rect.width * dpr);
+        canvas.height = Math.round(rect.height * dpr);
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+        game.width = rect.width;
+        game.height = rect.height;
+        const margin = Math.max(18, Math.round(game.width * 0.065));
+        game.roadLeft = margin;
+        game.roadWidth = game.width - margin * 2;
+        game.laneWidth = game.roadWidth / LANES;
+        game.playerY = game.height - 58;
+        if (game.playerX === 0) {
+          game.playerX = getLaneCenter(game.laneIndex);
+        } else {
+          game.playerX = getLaneCenter(game.laneIndex);
+        }
+      }
+
+      function getLaneCenter(lane) {
+        return game.roadLeft + game.laneWidth * (lane + 0.5);
+      }
+
+      function setOverlay(mode) {
+        overlayStart.classList.toggle('hidden', mode !== 'start');
+        overlayPause.classList.toggle('hidden', mode !== 'paused');
+        overlayGameOver.classList.toggle('hidden', mode !== 'gameover');
+      }
+
+      function resetGameData() {
+        game.laneIndex = 1;
+        game.playerX = getLaneCenter(1);
+        game.playerY = game.height - 58;
+        game.tilt = 0;
+        game.score = 0;
+        game.distanceScore = 0;
+        game.currentSpeed = game.baseSpeed;
+        game.displayKmh = 85;
+        game.maxKmh = 85;
+        game.turboTimer = 0;
+        game.spawnTimer = 0.35;
+        game.obstacles = [];
+        game.collectibles = [];
+        game.particles = [];
+        game.floatingTexts = [];
+        game.trail = [];
+        game.shakeTime = 0;
+        updateHud();
+      }
+
+      function updateHud() {
+        hudScore.textContent = Math.floor(game.score);
+        hudBest.textContent = highScore;
+        hudSpeed.textContent = Math.round(game.displayKmh) + ' KM/H';
+      }
+
+      function startGame() {
+        resizeCanvas();
+        resetGameData();
+        game.state = 'playing';
+        setOverlay('none');
+        SoundEngine.startEngine();
+        game.lastFrameTime = performance.now();
+      }
+
+      function pauseGame() {
+        if (game.state === 'playing') {
+          game.state = 'paused';
+          SoundEngine.stopEngine();
+          setOverlay('paused');
+        }
+      }
+
+      function resumeGame() {
+        if (game.state === 'paused') {
+          game.state = 'playing';
+          setOverlay('none');
+          SoundEngine.startEngine();
+          game.lastFrameTime = performance.now();
+        }
+      }
+
+      function triggerGameOver() {
+        game.state = 'gameover';
+        game.shakeTime = 0.38;
+        SoundEngine.playCrash();
+        spawnExplosion(game.playerX, game.playerY, '#ff6b00', 26);
+        spawnExplosion(game.playerX, game.playerY, '#00e5ff', 16);
+
+        const finalScore = Math.floor(game.score);
+        let isNewBest = false;
+        if (finalScore > highScore) {
+          highScore = finalScore;
+          isNewBest = true;
+          try {
+            localStorage.setItem(STORAGE_KEY, String(highScore));
+          } catch (e) {}
+        }
+
+        updateHud();
+        finalScoreEl.textContent = finalScore;
+        finalMaxSpeedEl.textContent = Math.round(game.maxKmh) + ' KM/H';
+        newRecordBadge.classList.toggle('hidden', !isNewBest);
+        setOverlay('gameover');
+      }
+
+      function steer(dir) {
+        if (game.state !== 'playing') return;
+        const nextLane = Math.max(0, Math.min(LANES - 1, game.laneIndex + dir));
+        if (nextLane !== game.laneIndex) {
+          game.laneIndex = nextLane;
+          game.tilt = dir * 0.42;
+          SoundEngine.playShift();
+        }
+      }
+
+      function spawnWave() {
+        const lanes = [0, 1, 2, 3];
+        for (let i = lanes.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          const tmp = lanes[i];
+          lanes[i] = lanes[j];
+          lanes[j] = tmp;
+        }
+
+        const difficulty = Math.min(1, game.score / 1800);
+        const maxObstacles = difficulty > 0.45 ? 3 : 2;
+        const obstacleCount = Math.random() < 0.35 + difficulty * 0.35 ? maxObstacles : 1;
+
+        for (let i = 0; i < obstacleCount; i++) {
+          const lane = lanes[i];
+          const isCone = Math.random() < 0.36;
+          game.obstacles.push({
+            lane: lane,
+            x: getLaneCenter(lane),
+            y: -65 - Math.random() * 25,
+            type: isCone ? 'cone' : 'car',
+            w: isCone ? Math.min(26, game.laneWidth * 0.38) : Math.min(40, game.laneWidth * 0.56),
+            h: isCone ? 26 : 64,
+            speedFactor: isCone ? 1.0 : 0.72 + Math.random() * 0.14,
+            bodyColor: Math.random() < 0.5 ? '#1e293b' : '#172033'
+          });
+        }
+
+        const freeLane = lanes[obstacleCount];
+        if (freeLane !== undefined && Math.random() < 0.58) {
+          game.collectibles.push({
+            lane: freeLane,
+            x: getLaneCenter(freeLane),
+            y: -55,
+            radius: 13,
+            pulse: Math.random() * Math.PI * 2
+          });
+        }
+      }
+
+      function spawnExplosion(x, y, color, count) {
+        for (let i = 0; i < count; i++) {
+          const angle = Math.random() * Math.PI * 2;
+          const speed = 50 + Math.random() * 210;
+          game.particles.push({
+            x: x,
+            y: y,
+            vx: Math.cos(angle) * speed,
+            vy: Math.sin(angle) * speed,
+            life: 0.35 + Math.random() * 0.35,
+            maxLife: 0.7,
+            size: 2 + Math.random() * 3.5,
+            color: color
+          });
+        }
+      }
+
+      function addFloatingText(x, y, text, color) {
+        game.floatingTexts.push({
+          x: x,
+          y: y,
+          text: text,
+          color: color,
+          life: 0.85
+        });
+      }
+
+      function update(dt) {
+        if (game.shakeTime > 0) {
+          game.shakeTime = Math.max(0, game.shakeTime - dt);
+        }
+
+        for (let i = game.particles.length - 1; i >= 0; i--) {
+          const p = game.particles[i];
+          p.x += p.vx * dt;
+          p.y += p.vy * dt;
+          p.life -= dt;
+          if (p.life <= 0) {
+            game.particles.splice(i, 1);
+          }
+        }
+
+        for (let i = game.floatingTexts.length - 1; i >= 0; i--) {
+          const ft = game.floatingTexts[i];
+          ft.y -= 42 * dt;
+          ft.life -= dt;
+          if (ft.life <= 0) {
+            game.floatingTexts.splice(i, 1);
+          }
+        }
+
+        if (game.state === 'start') {
+          game.roadOffset = (game.roadOffset + 150 * dt) % 48;
+          game.playerX = getLaneCenter(game.laneIndex);
+          return;
+        }
+
+        if (game.state !== 'playing') {
+          return;
+        }
+
+        if (game.turboTimer > 0) {
+          game.turboTimer = Math.max(0, game.turboTimer - dt);
+        }
+
+        const progression = Math.min(1.65, game.score / 1400);
+        const turboBonusSpeed = game.turboTimer > 0 ? 110 : 0;
+        game.currentSpeed = game.baseSpeed + progression * 255 + turboBonusSpeed;
+
+        game.displayKmh = Math.min(258, 85 + progression * 145 + (game.turboTimer > 0 ? 28 : 0));
+        if (game.displayKmh > game.maxKmh) {
+          game.maxKmh = game.displayKmh;
+        }
+
+        SoundEngine.updateEnginePitch(Math.min(1, progression / 1.5), game.turboTimer > 0);
+
+        game.distanceScore += (game.currentSpeed * dt) * 0.075;
+        game.score += (game.currentSpeed * dt) * 0.075;
+        updateHud();
+
+        game.roadOffset = (game.roadOffset + game.currentSpeed * dt) % 48;
+
+        const targetX = getLaneCenter(game.laneIndex);
+        game.playerX += (targetX - game.playerX) * Math.min(1, dt * 16);
+        game.tilt += (0 - game.tilt) * Math.min(1, dt * 10);
+
+        game.trail.push({
+          x: game.playerX,
+          y: game.playerY + 24,
+          life: game.turboTimer > 0 ? 0.28 : 0.16,
+          turbo: game.turboTimer > 0
+        });
+        for (let i = game.trail.length - 1; i >= 0; i--) {
+          game.trail[i].y += game.currentSpeed * 0.55 * dt;
+          game.trail[i].life -= dt;
+          if (game.trail[i].life <= 0) {
+            game.trail.splice(i, 1);
+          }
+        }
+
+        game.spawnTimer -= dt;
+        if (game.spawnTimer <= 0) {
+          spawnWave();
+          const interval = Math.max(0.56, 1.18 - progression * 0.42);
+          game.spawnTimer = interval;
+        }
+
+        const playerHitW = 20;
+        const playerHitH = 44;
+
+        for (let i = game.collectibles.length - 1; i >= 0; i--) {
+          const item = game.collectibles[i];
+          item.y += game.currentSpeed * 0.92 * dt;
+          item.pulse += dt * 7;
+
+          const dx = Math.abs(item.x - game.playerX);
+          const dy = Math.abs(item.y - game.playerY);
+          if (dx < playerHitW * 0.7 + item.radius && dy < playerHitH * 0.55 + item.radius) {
+            game.score += 50;
+            game.turboTimer = 2.4;
+            SoundEngine.playNitro();
+            spawnExplosion(item.x, item.y, '#00e5ff', 18);
+            addFloatingText(item.x, item.y - 12, '+50 NITRO!', '#00e5ff');
+            updateHud();
+            game.collectibles.splice(i, 1);
+            continue;
+          }
+
+          if (item.y > game.height + 40) {
+            game.collectibles.splice(i, 1);
+          }
+        }
+
+        for (let i = game.obstacles.length - 1; i >= 0; i--) {
+          const obs = game.obstacles[i];
+          obs.y += game.currentSpeed * obs.speedFactor * dt;
+
+          const dx = Math.abs(obs.x - game.playerX);
+          const dy = Math.abs(obs.y - game.playerY);
+          if (dx < (playerHitW + obs.w) * 0.43 && dy < (playerHitH + obs.h) * 0.43) {
+            triggerGameOver();
+            return;
+          }
+
+          if (obs.y > game.height + 80) {
+            game.obstacles.splice(i, 1);
+          }
+        }
+      }
+
+      function drawRoad() {
+        ctx.fillStyle = '#07090f';
+        ctx.fillRect(0, 0, game.width, game.height);
+
+        const roadGrad = ctx.createLinearGradient(game.roadLeft, 0, game.roadLeft + game.roadWidth, 0);
+        roadGrad.addColorStop(0, '#0b0f19');
+        roadGrad.addColorStop(0.5, '#111827');
+        roadGrad.addColorStop(1, '#0b0f19');
+        ctx.fillStyle = roadGrad;
+        ctx.fillRect(game.roadLeft, 0, game.roadWidth, game.height);
+
+        ctx.strokeStyle = 'rgba(0, 229, 255, 0.55)';
+        ctx.lineWidth = 2.5;
+        ctx.beginPath();
+        ctx.moveTo(game.roadLeft, 0);
+        ctx.lineTo(game.roadLeft, game.height);
+        ctx.moveTo(game.roadLeft + game.roadWidth, 0);
+        ctx.lineTo(game.roadLeft + game.roadWidth, game.height);
+        ctx.stroke();
+
+        ctx.strokeStyle = 'rgba(148, 163, 184, 0.24)';
+        ctx.lineWidth = 2;
+        ctx.setLineDash([24, 24]);
+        ctx.lineDashOffset = -game.roadOffset;
+        for (let lane = 1; lane < LANES; lane++) {
+          const x = game.roadLeft + game.laneWidth * lane;
+          ctx.beginPath();
+          ctx.moveTo(x, 0);
+          ctx.lineTo(x, game.height);
+          ctx.stroke();
+        }
+        ctx.setLineDash([]);
+
+        const lightSpacing = 96;
+        const offset = (game.roadOffset * 2) % lightSpacing;
+        for (let y = offset - lightSpacing; y < game.height + lightSpacing; y += lightSpacing) {
+          ctx.fillStyle = 'rgba(37, 99, 235, 0.7)';
+          ctx.fillRect(game.roadLeft - 7, y, 3, 12);
+          ctx.fillStyle = 'rgba(255, 107, 0, 0.7)';
+          ctx.fillRect(game.roadLeft + game.roadWidth + 4, y + 48, 3, 12);
+        }
+      }
+
+      function drawCollectibles() {
+        for (let i = 0; i < game.collectibles.length; i++) {
+          const item = game.collectibles[i];
+          const scale = 1 + Math.sin(item.pulse) * 0.14;
+          ctx.save();
+          ctx.translate(item.x, item.y);
+          ctx.scale(scale, scale);
+
+          const glow = ctx.createRadialGradient(0, 0, 2, 0, 0, 22);
+          glow.addColorStop(0, 'rgba(0, 229, 255, 0.65)');
+          glow.addColorStop(1, 'rgba(0, 229, 255, 0)');
+          ctx.fillStyle = glow;
+          ctx.beginPath();
+          ctx.arc(0, 0, 22, 0, Math.PI * 2);
+          ctx.fill();
+
+          ctx.rotate(item.pulse * 0.45);
+          ctx.fillStyle = '#00e5ff';
+          ctx.strokeStyle = '#ffffff';
+          ctx.lineWidth = 1.6;
+          ctx.beginPath();
+          ctx.moveTo(0, -11);
+          ctx.lineTo(10, 0);
+          ctx.lineTo(0, 11);
+          ctx.lineTo(-10, 0);
+          ctx.closePath();
+          ctx.fill();
+          ctx.stroke();
+
+          ctx.fillStyle = '#090b10';
+          ctx.beginPath();
+          ctx.arc(0, 0, 3.2, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.restore();
+        }
+      }
+
+      function drawObstacles() {
+        for (let i = 0; i < game.obstacles.length; i++) {
+          const obs = game.obstacles[i];
+          ctx.save();
+          ctx.translate(obs.x, obs.y);
+
+          if (obs.type === 'cone') {
+            const r = obs.w * 0.5;
+            const coneGlow = ctx.createRadialGradient(0, 0, 2, 0, 0, r + 10);
+            coneGlow.addColorStop(0, 'rgba(255, 107, 0, 0.45)');
+            coneGlow.addColorStop(1, 'rgba(255, 107, 0, 0)');
+            ctx.fillStyle = coneGlow;
+            ctx.beginPath();
+            ctx.arc(0, 0, r + 10, 0, Math.PI * 2);
+            ctx.fill();
+
+            ctx.fillStyle = '#ff6b00';
+            ctx.beginPath();
+            ctx.arc(0, 0, r, 0, Math.PI * 2);
+            ctx.fill();
+
+            ctx.fillStyle = '#ffffff';
+            ctx.beginPath();
+            ctx.arc(0, 0, r * 0.55, 0, Math.PI * 2);
+            ctx.fill();
+
+            ctx.fillStyle = '#ff6b00';
+            ctx.beginPath();
+            ctx.arc(0, 0, r * 0.26, 0, Math.PI * 2);
+            ctx.fill();
+          } else {
+            const w = obs.w;
+            const h = obs.h;
+            const hw = w / 2;
+            const hh = h / 2;
+
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.55)';
+            ctx.beginPath();
+            ctx.roundRect(-hw + 3, -hh + 5, w, h, 9);
+            ctx.fill();
+
+            ctx.fillStyle = obs.bodyColor;
+            ctx.strokeStyle = 'rgba(148, 163, 184, 0.35)';
+            ctx.lineWidth = 1.4;
+            ctx.beginPath();
+            ctx.roundRect(-hw, -hh, w, h, 9);
+            ctx.fill();
+            ctx.stroke();
+
+            ctx.fillStyle = '#090d16';
+            ctx.beginPath();
+            ctx.roundRect(-hw + 4, -hh + 12, w - 8, h * 0.52, 5);
+            ctx.fill();
+
+            ctx.fillStyle = '#ef4444';
+            ctx.shadowColor = '#ef4444';
+            ctx.shadowBlur = 12;
+            ctx.fillRect(-hw + 4, hh - 5, 9, 4);
+            ctx.fillRect(hw - 13, hh - 5, 9, 4);
+            ctx.shadowBlur = 0;
+          }
+
+          ctx.restore();
+        }
+      }
+
+      function drawPlayerBike() {
+        for (let i = 0; i < game.trail.length; i++) {
+          const t = game.trail[i];
+          const alpha = Math.max(0, t.life / (t.turbo ? 0.28 : 0.16));
+          ctx.fillStyle = t.turbo
+            ? 'rgba(0, 229, 255, ' + (alpha * 0.55) + ')'
+            : 'rgba(37, 99, 235, ' + (alpha * 0.35) + ')';
+          ctx.beginPath();
+          ctx.arc(t.x, t.y, t.turbo ? 6.5 * alpha : 4 * alpha, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        ctx.save();
+        ctx.translate(game.playerX, game.playerY);
+        ctx.rotate(game.tilt);
+
+        const beamGrad = ctx.createLinearGradient(0, -24, 0, -135);
+        beamGrad.addColorStop(0, game.turboTimer > 0 ? 'rgba(0, 229, 255, 0.42)' : 'rgba(224, 242, 254, 0.34)');
+        beamGrad.addColorStop(1, 'rgba(0, 229, 255, 0)');
+        ctx.fillStyle = beamGrad;
+        ctx.beginPath();
+        ctx.moveTo(-6, -24);
+        ctx.lineTo(-34, -135);
+        ctx.lineTo(34, -135);
+        ctx.lineTo(6, -24);
+        ctx.closePath();
+        ctx.fill();
+
+        if (game.turboTimer > 0) {
+          ctx.strokeStyle = 'rgba(0, 229, 255, 0.75)';
+          ctx.lineWidth = 2;
+          ctx.beginPath();
+          ctx.ellipse(0, 0, 18, 33, 0, 0, Math.PI * 2);
+          ctx.stroke();
+        }
+
+        ctx.fillStyle = '#090b10';
+        ctx.fillRect(-3.5, -28, 7, 12);
+        ctx.fillRect(-4.5, 16, 9, 13);
+
+        ctx.strokeStyle = '#ff6b00';
+        ctx.lineWidth = 1.4;
+        ctx.beginPath();
+        ctx.moveTo(-3.5, -23);
+        ctx.lineTo(3.5, -23);
+        ctx.moveTo(-4.5, 22);
+        ctx.lineTo(4.5, 22);
+        ctx.stroke();
+
+        ctx.fillStyle = '#2563eb';
+        ctx.beginPath();
+        ctx.moveTo(0, -24);
+        ctx.lineTo(11, -9);
+        ctx.lineTo(9, 14);
+        ctx.lineTo(0, 22);
+        ctx.lineTo(-9, 14);
+        ctx.lineTo(-11, -9);
+        ctx.closePath();
+        ctx.fill();
+
+        ctx.strokeStyle = '#00e5ff';
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.moveTo(-8, -7);
+        ctx.lineTo(-5, 9);
+        ctx.moveTo(8, -7);
+        ctx.lineTo(5, 9);
+        ctx.stroke();
+
+        ctx.strokeStyle = '#94a3b8';
+        ctx.lineWidth = 2.5;
+        ctx.beginPath();
+        ctx.moveTo(-13, -10);
+        ctx.lineTo(13, -10);
+        ctx.stroke();
+
+        ctx.fillStyle = '#0f172a';
+        ctx.beginPath();
+        ctx.ellipse(0, 2, 7.5, 10, 0, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = '#f8fafc';
+        ctx.beginPath();
+        ctx.arc(0, -3, 5.5, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = '#00e5ff';
+        ctx.beginPath();
+        ctx.arc(0, -5, 4.2, Math.PI * 1.1, Math.PI * 1.9);
+        ctx.fill();
+
+        ctx.fillStyle = '#ffffff';
+        ctx.shadowColor = '#00e5ff';
+        ctx.shadowBlur = 10;
+        ctx.beginPath();
+        ctx.arc(0, -23, 3, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.shadowBlur = 0;
+
+        ctx.fillStyle = '#ff2a2a';
+        ctx.fillRect(-3, 21, 6, 3);
+
+        ctx.restore();
+      }
+
+      function drawEffects() {
+        for (let i = 0; i < game.particles.length; i++) {
+          const p = game.particles[i];
+          const alpha = Math.max(0, p.life / p.maxLife);
+          ctx.globalAlpha = alpha;
+          ctx.fillStyle = p.color;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        ctx.globalAlpha = 1;
+
+        ctx.font = '800 13px Orbitron, sans-serif';
+        ctx.textAlign = 'center';
+        for (let i = 0; i < game.floatingTexts.length; i++) {
+          const ft = game.floatingTexts[i];
+          ctx.globalAlpha = Math.max(0, ft.life / 0.85);
+          ctx.fillStyle = ft.color;
+          ctx.fillText(ft.text, ft.x, ft.y);
+        }
+        ctx.globalAlpha = 1;
+      }
+
+      function render() {
+        ctx.save();
+        if (game.shakeTime > 0) {
+          const mag = game.shakeTime * 18;
+          ctx.translate((Math.random() - 0.5) * mag, (Math.random() - 0.5) * mag);
+        }
+        drawRoad();
+        drawCollectibles();
+        drawObstacles();
+        drawPlayerBike();
+        drawEffects();
+        ctx.restore();
+      }
+
+      function gameLoop(now) {
+        if (!game.lastFrameTime) {
+          game.lastFrameTime = now;
+        }
+        const dt = Math.min(0.05, (now - game.lastFrameTime) / 1000);
+        game.lastFrameTime = now;
+
+        update(dt);
+        render();
+        requestAnimationFrame(gameLoop);
+      }
+
+      btnFlipToGame.addEventListener('click', function () {
+        card3d.classList.add('is-flipped');
+        SoundEngine.init();
+        setTimeout(function () {
+          resizeCanvas();
+        }, 120);
+      });
+
+      btnFlipToCard.addEventListener('click', function () {
+        pauseGame();
+        card3d.classList.remove('is-flipped');
+      });
+
+      btnStartGame.addEventListener('click', startGame);
+      btnResumeGame.addEventListener('click', resumeGame);
+      btnRestartGame.addEventListener('click', startGame);
+
+      function bindSteerButton(btn, dir) {
+        const press = function (e) {
+          e.preventDefault();
+          btn.classList.add('is-pressed');
+          steer(dir);
+        };
+        const release = function () {
+          btn.classList.remove('is-pressed');
+        };
+        btn.addEventListener('mousedown', press);
+        btn.addEventListener('touchstart', press, { passive: false });
+        btn.addEventListener('mouseup', release);
+        btn.addEventListener('mouseleave', release);
+        btn.addEventListener('touchend', release);
+      }
+
+      bindSteerButton(btnLeft, -1);
+      bindSteerButton(btnRight, 1);
+
+      window.addEventListener('keydown', function (e) {
+        if (!card3d.classList.contains('is-flipped')) return;
+        if (e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'A') {
+          e.preventDefault();
+          steer(-1);
+        } else if (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') {
+          e.preventDefault();
+          steer(1);
+        } else if (e.key === ' ' || e.key === 'Enter') {
+          if (game.state === 'start' || game.state === 'gameover') {
+            e.preventDefault();
+            startGame();
+          } else if (game.state === 'paused') {
+            e.preventDefault();
+            resumeGame();
+          }
+        } else if (e.key === 'p' || e.key === 'P' || e.key === 'Escape') {
+          if (game.state === 'playing') {
+            pauseGame();
+          } else if (game.state === 'paused') {
+            resumeGame();
+          }
+        }
+      });
+
+      let touchStartX = null;
+      canvasWrapper.addEventListener('touchstart', function (e) {
+        if (e.touches && e.touches.length > 0) {
+          touchStartX = e.touches[0].clientX;
+        }
+      }, { passive: true });
+
+      canvasWrapper.addEventListener('touchend', function (e) {
+        if (touchStartX === null || game.state !== 'playing') return;
+        const touchEndX = e.changedTouches[0].clientX;
+        const diffX = touchEndX - touchStartX;
+        if (Math.abs(diffX) > 22) {
+          steer(diffX > 0 ? 1 : -1);
+        } else {
+          const rect = canvasWrapper.getBoundingClientRect();
+          const tapX = touchEndX - rect.left;
+          steer(tapX < rect.width / 2 ? -1 : 1);
+        }
+        touchStartX = null;
+      }, { passive: true });
+
+      canvas.addEventListener('click', function (e) {
+        if (game.state !== 'playing') return;
+        const rect = canvas.getBoundingClientRect();
+        const clickX = e.clientX - rect.left;
+        steer(clickX < rect.width / 2 ? -1 : 1);
+      });
+
+      window.addEventListener('resize', resizeCanvas);
+      window.addEventListener('load', function () {
+        resizeCanvas();
+        requestAnimationFrame(gameLoop);
+      });
+    })();
+  </script>
+</body>
+</html>
